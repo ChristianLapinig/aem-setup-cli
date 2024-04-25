@@ -1,34 +1,30 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2024 Christian Lapinig <lapinig.a.christian@gmail.com>
 */
 package cmd
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
 )
 
-
-
-// rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "aem-starter",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "CLI tool to help setup AEM locally",
+	Long:  `CLI tool that makes it easy to setup your environment to run AEM locally.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		setupPath, _ := cmd.Flags().GetString("path")
+		repoPath, _ := cmd.Flags().GetString("mount")
+		fmt.Println("Setup path: ", setupPath)
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+		if repoPath != "" {
+			fmt.Println("Repository path: ", repoPath)
+		}
+	},
 }
 
-// Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
@@ -37,15 +33,6 @@ func Execute() {
 }
 
 func init() {
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
-
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.aem-starter.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.Flags().StringP("path", "p", ".", "Path where AEM should be setup. Default is the current directory you are in.")
+	rootCmd.Flags().StringP("mount", "m", "", "Path to an existing AEM repository that will be mounted to the author and publish instances.")
 }
-
-
