@@ -1,13 +1,13 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 Christian Lapinig <lapinig.a.christian@gmail.com>
 */
 package cmd
 
 import (
 	"fmt"
-	"os"
 	"path/filepath"
 
+	"github.com/ChristianLapinig/aem-starter/lib"
 	"github.com/spf13/cobra"
 )
 
@@ -25,12 +25,12 @@ var setupCmd = &cobra.Command{
 		publishPath := filepath.Join(setupPath, "publish")
 
 		fmt.Println("Creating author and publish folders in", setupPath)
-		if err := os.Mkdir(authorPath, 0755); err != nil {
+		if err := lib.CreateFolder(authorPath); err != nil {
 			panic(err)
 		}
 		fmt.Println("Successfully created author folder")
 
-		if err := os.Mkdir(publishPath, 0755); err != nil {
+		if err := lib.CreateFolder(publishPath); err != nil {
 			panic(err)
 		}
 		fmt.Println("Successfully created publish folder")
