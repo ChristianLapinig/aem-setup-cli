@@ -19,7 +19,7 @@ var setupCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		setupPath, _ := cmd.Flags().GetString("path")
 		// repoPath, _ := cmd.Flags().GetString("mount")
-		// quickstartPath, _ := cmd.Flags().GetString("quickstart")
+		quickstartPath, _ := cmd.Flags().GetString("quickstart")
 
 		authorPath := filepath.Join(setupPath, "author")
 		publishPath := filepath.Join(setupPath, "publish")
@@ -34,6 +34,15 @@ var setupCmd = &cobra.Command{
 			panic(err)
 		}
 		fmt.Println("Successfully created publish folder")
+
+		// TODO: It should be specified where to mount the given repository
+		// should it be in the author or publish folder? or both?
+
+		fmt.Println("Copying quickstart JAR to respective folders")
+		if quickstartPath != "" {
+			fmt.Println(authorPath + "/aem-author-p4502.jar")
+			fmt.Println(publishPath + "/aem-publish-p4503.jar")
+		}
 	},
 }
 
