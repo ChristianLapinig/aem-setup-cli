@@ -10,7 +10,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "aem-starter",
+	Use:   "aem-setup-cli",
 	Short: "CLI tool to help setup AEM locally",
 	Long:  `CLI tool that makes it easy to setup your environment to run AEM locally.`,
 	Run: func(cmd *cobra.Command, args []string) {

@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ChristianLapinig/aem-starter/lib"
+	"github.com/ChristianLapinig/aem-setup-cli/lib"
 	"github.com/spf13/cobra"
 )
 
