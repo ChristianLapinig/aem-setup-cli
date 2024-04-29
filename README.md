@@ -10,20 +10,10 @@ your local AEM environment, and mounting an existing `crx-quickstart` repository
 ## Installation
 
 As of April 29, 2024, [Go](https://go.dev/) is required to install the tool. After
-you have installed Go and have your `GOPATH` defined, please follow the steps below to install `aem-setup-cli`:
+you have installed Go and have your `GOPATH` defined, run the following command to install `aem-setup-cli`:
 
 ```bash
-# 1. Clone the repository
-$ git clone https://github.com/ChristianLapinig/aem-setup-cli
-
-# 2. cd into the repository
-$ cd aem-setup-cli
-
-# 3. Build by running 'go build'
-$ go build
-
-# 4. Run the 'go install' command
-$ go install
+$ go install github.com/ChristianLapinig/aem-setup-cli@latest
 ```
 
 ## Usage
