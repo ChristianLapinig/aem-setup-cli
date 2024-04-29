@@ -33,36 +33,21 @@ var setupCmd = &cobra.Command{
 		publishPath := filepath.Join(setupPath, "publish")
 
 		fmt.Println("Creating author and publish folders in", setupPath)
-		if err := lib.CreateFolder(authorPath); err != nil {
-			panic(err)
-		}
-
-		if err := lib.CreateFolder(publishPath); err != nil {
-			panic(err)
-		}
+		lib.CheckErr(lib.CreateFolder(authorPath))
+		lib.CheckErr(lib.CreateFolder(publishPath))
 		fmt.Println("Successfully created author and publish folders")
 
 		fmt.Println("Copying license.properties file to respective instances")
-		if err := lib.CopyFile(licenseProperties, filepath.Join(authorPath, "license.properties")); err != nil {
-			panic(err)
-		}
-
-		if err := lib.CopyFile(licenseProperties, filepath.Join(publishPath, "license.properties")); err != nil {
-			panic(err)
-		}
+		lib.CheckErr(lib.CopyFile(licenseProperties, filepath.Join(authorPath, "license.properties")))
+		lib.CheckErr(lib.CopyFile(licenseProperties, filepath.Join(publishPath, "license.properties")))
 		fmt.Println("Successfully copied license.properties to author and publish folders")
 
 		// TODO: It should be specified where to mount the given repository
 		// should it be in the author or publish folder? or both?
 
 		fmt.Println("Copying quickstart JAR to respective folders")
-		if err := lib.CopyFile(quickstartPath, filepath.Join(authorPath, "aem-author-p4502.jar")); err != nil {
-			panic(err)
-		}
-
-		if err := lib.CopyFile(quickstartPath, filepath.Join(publishPath, "aem-publish-p4503.jar")); err != nil {
-			panic(err)
-		}
+		lib.CheckErr(lib.CopyFile(quickstartPath, filepath.Join(authorPath, "aem-author-p4502.jar")))
+		lib.CheckErr(lib.CopyFile(quickstartPath, filepath.Join(publishPath, "aem-publish-p4503.jar")))
 		fmt.Println("Successfully copied the quickstart jar to author and publish folder")
 	},
 }
