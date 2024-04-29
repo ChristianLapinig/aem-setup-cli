@@ -5,8 +5,7 @@
 `aem-setup-cli` generates a base environment to run AEM (Adobe Experience Manager)
 locally. The tool will create the folders and add the files necessary for both `author`
 and `publish` instances. It supports options, such as specifying where to setup
-your local AEM environment, mount an existing `crx-quickstart` repository, and the use
-of a different AEM quickstart JAR if given.
+your local AEM environment, and mounting an existing `crx-quickstart` repository to a specified instance (in-progress).
 
 ## Installation
 
@@ -20,7 +19,10 @@ $ git clone https://github.com/ChristianLapinig/aem-setup-cli
 # 2. cd into the repository
 $ cd aem-setup-cli
 
-# 3. Run the 'go install' command
+# 3. Build by running 'go build'
+$ go build
+
+# 4. Run the 'go install' command
 $ go install
 ```
 
@@ -40,7 +42,6 @@ The `setup` command also has the following flags/options:
 
 ```
 -h, --help                help for setup
--m, --mount string        Path to an existing AEM repository that will be mounted to your instances.
 -p, --path string         Path where AEM should be setup. Default is the current directory you are in. (default ".")
 ```
 
