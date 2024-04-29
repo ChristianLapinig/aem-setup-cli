@@ -50,3 +50,27 @@ Example:
 ```bash
 $ aem-setup-cli setup /path/to/license.properties -p /path/to/setup/env -m /path/to/crx-quickstart
 ```
+
+## Contributing
+
+To contribute to the project, please fork the repository and clone it locally:
+
+```bash
+$ git clone https://github.com/YourUsename/aem-setup-cli
+```
+
+If there are any issues or bugs, please open an issue in the issues tab.
+
+### Creating a Pull Request
+
+Use the following steps below to create a pull request:
+
+1. Create a branch under your fork
+2. Push the changes to that branch
+3. Add tests if applicable
+4. Create a pull request. If there is an issue associated with your PR, please add it
+   to the description.
+
+## Contributors
+
+- [Chrisitan Lapinig](https://github.com/ChristianLapinig)
