@@ -24,9 +24,15 @@ var setupCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
+		if len(args) < 2 {
+			fmt.Println("Path to quickstart JAR is required. Exiting...")
+			os.Exit(1)
+		}
+
 		licenseProperties := args[0]
+		quickstartPath := args[1]
 		setupPath, _ := cmd.Flags().GetString("path")
-		quickstartPath, _ := cmd.Flags().GetString("quickstart")
+		// quickstartPath, _ := cmd.Flags().GetString("quickstart")
 		// repoPath, _ := cmd.Flags().GetString("mount")
 
 		authorPath := filepath.Join(setupPath, "author")
@@ -55,6 +61,6 @@ var setupCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(setupCmd)
 	setupCmd.Flags().StringP("path", "p", ".", "Path where AEM should be setup. Default is the current directory you are in.")
-	setupCmd.Flags().StringP("quickstart", "q", "cq-quickstart-6.5.0.jar", "Path to an existing AEM quickstart JAR. For example, the latest AEM Cloud SDK quickstart JAR.")
+	// setupCmd.Flags().StringP("quickstart", "q", "cq-quickstart-6.5.0.jar", "Path to an existing AEM quickstart JAR. For example, the latest AEM Cloud SDK quickstart JAR.")
 	setupCmd.Flags().StringP("mount", "m", "", "Path to an existing AEM repository that will be mounted to your instances.")
 }
