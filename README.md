@@ -31,8 +31,10 @@ This will setup the environment in the current directory the tool is executed.
 The `setup` command also has the following flags/options:
 
 ```
--h, --help                help for setup
--p, --path string         Path where AEM should be setup. Default is the current directory you are in. (default ".")
+-h, --help              help for setup
+-i, --instance string   Instance where the given repository from 'mount' should be mounted.
+-m, --mount string      Path to an existing AEM repository that will be mounted to your instances. Must be used with the instance flag.
+-p, --path string       Path where AEM should be setup. Default is the current directory you are in. (default ".")
 ```
 
 Example:
