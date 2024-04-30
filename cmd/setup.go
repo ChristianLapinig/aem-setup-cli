@@ -64,6 +64,8 @@ var setupCmd = &cobra.Command{
 			fmt.Println("An instance must be specified when using the 'mount' command.")
 			os.Exit(1)
 		}
+
+		fmt.Println("Done. Local AEM environment is now setup.")
 	},
 }
 
