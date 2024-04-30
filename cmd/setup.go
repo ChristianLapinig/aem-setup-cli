@@ -32,8 +32,8 @@ var setupCmd = &cobra.Command{
 		licenseProperties := args[0]
 		quickstartPath := args[1]
 		setupPath, _ := cmd.Flags().GetString("path")
-		// quickstartPath, _ := cmd.Flags().GetString("quickstart")
-		// repoPath, _ := cmd.Flags().GetString("mount")
+		repoPath, _ := cmd.Flags().GetString("mount")
+		instance, _ := cmd.Flags().GetString("instance")
 
 		authorPath := filepath.Join(setupPath, "author")
 		publishPath := filepath.Join(setupPath, "publish")
@@ -44,23 +44,32 @@ var setupCmd = &cobra.Command{
 		fmt.Println("Successfully created author and publish folders")
 
 		fmt.Println("Copying license.properties file to respective instances")
-		lib.CheckErr(lib.CopyFile(licenseProperties, filepath.Join(authorPath, "license.properties")))
-		lib.CheckErr(lib.CopyFile(licenseProperties, filepath.Join(publishPath, "license.properties")))
+		lib.CheckErr(lib.Copy(licenseProperties, filepath.Join(authorPath, "license.properties")))
+		lib.CheckErr(lib.Copy(licenseProperties, filepath.Join(publishPath, "license.properties")))
 		fmt.Println("Successfully copied license.properties to author and publish folders")
 
 		// TODO: It should be specified where to mount the given repository
 		// should it be in the author or publish folder? or both?
 
 		fmt.Println("Copying quickstart JAR to respective folders")
-		lib.CheckErr(lib.CopyFile(quickstartPath, filepath.Join(authorPath, "aem-author-p4502.jar")))
-		lib.CheckErr(lib.CopyFile(quickstartPath, filepath.Join(publishPath, "aem-publish-p4503.jar")))
+		lib.CheckErr(lib.Copy(quickstartPath, filepath.Join(authorPath, "aem-author-p4502.jar")))
+		lib.CheckErr(lib.Copy(quickstartPath, filepath.Join(publishPath, "aem-publish-p4503.jar")))
 		fmt.Println("Successfully copied the quickstart jar to author and publish folder")
+
+		if repoPath != "" && instance != "" {
+			fmt.Println("Copying existing repository to", setupPath+"/"+instance)
+			lib.CheckErr(lib.Copy(repoPath, filepath.Join(setupPath, instance, "crx-quickstart")))
+			fmt.Println("Successfully mounted existing repository to", setupPath+"/"+instance)
+		} else if repoPath != "" && instance == "" {
+			fmt.Println("An instance must be specified when using the 'mount' command.")
+			os.Exit(1)
+		}
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(setupCmd)
 	setupCmd.Flags().StringP("path", "p", ".", "Path where AEM should be setup. Default is the current directory you are in.")
-	// setupCmd.Flags().StringP("quickstart", "q", "cq-quickstart-6.5.0.jar", "Path to an existing AEM quickstart JAR. For example, the latest AEM Cloud SDK quickstart JAR.")
-	setupCmd.Flags().StringP("mount", "m", "", "Path to an existing AEM repository that will be mounted to your instances.")
+	setupCmd.Flags().StringP("mount", "m", "", "Path to an existing AEM repository that will be mounted to your instances. Must be used with the instance flag.")
+	setupCmd.Flags().StringP("instance", "i", "", "Instance where the given repository from 'mount' should be mounted.")
 }
