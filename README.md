@@ -32,15 +32,15 @@ The `setup` command also has the following flags/options:
 
 ```
 -h, --help              help for setup
--i, --instance string   Instance where the given repository from 'mount' should be mounted.
+-i, --instance string   Instance where the given repository from 'mount' should be mounted. Must be used with the mount flag
 -m, --mount string      Path to an existing AEM repository that will be mounted to your instances. Must be used with the instance flag.
--p, --path string       Path where AEM should be setup. Default is the current directory you are in. (default ".")
+-p, --path string       Path where AEM should be setup. Default is the current directory you are in.
 ```
 
 Example:
 
 ```bash
-$ aem-setup-cli setup /path/to/license.properties -p /path/to/setup/env -m /path/to/crx-quickstart
+$ aem-setup-cli setup /path/to/license.properties -p /path/to/setup/env -m /path/to/crx-quickstart -i author
 ```
 
 ## Contributing
