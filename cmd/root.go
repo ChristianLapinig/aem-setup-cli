@@ -13,7 +13,8 @@ var rootCmd = &cobra.Command{
 	Use:   "aem-setup-cli",
 	Short: "CLI tool to help setup AEM locally",
 	Long:  `CLI tool that makes it easy to setup your environment to run AEM locally.`,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return nil
 	},
 }
 
@@ -25,4 +26,8 @@ func Execute() {
 }
 
 func init() {
+	setup := NewSetupImpl()
+	setupCmd := NewSetupCommand(setup)
+
+	rootCmd.AddCommand(setupCmd)
 }
