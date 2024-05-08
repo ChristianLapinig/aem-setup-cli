@@ -53,14 +53,24 @@ $ git clone https://github.com/YourUsename/aem-setup-cli
 
 If there are any issues or bugs, please open an issue in the issues tab.
 
+### Tests
+
+If applicable, it is recommended to add tests. The following command will run all tests in the
+project:
+
+```bash
+$ go run ./... -v
+```
+
+Please ensure that all tests pass before creating a pull request.
+
 ### Creating a Pull Request
 
 Use the following steps below to create a pull request:
 
 1. Create a branch under your fork
 2. Push the changes to that branch
-3. Add tests if applicable
-4. Create a pull request. If there is an issue associated with your PR, please add it
+3. Create a pull request. If there is an issue associated with your PR, please add it
    to the description.
 
 ## Contributors
